@@ -12,7 +12,7 @@ file_ontology_1 = os.path.join(ontology_directory, "EntericMeasureOnto.owl")
 def generate_ontology(save=True):
     """Generates the ontology with defined classes, properties, and rules."""
     onto_path.append(file_ontology_1)
-    onto = get_ontology("http://www.semanticweb.org/owl/owlapi/EntericMeasureOnto#")
+    onto = get_ontology("onto_path")
     with onto:
         define_classes_and_properties(onto)
         create_rules(onto)
