@@ -18,9 +18,20 @@ def main():
     os.makedirs(MODEL_PATH, exist_ok=True)
 
     # Carrega os dados
-    data = load_data(DATA_PATH)
-    data = data[data["Property"].isin(["P-12", "P-22"])]
+    df = load_data(DATA_PATH)
+    #data = data[data["Property"].isin(["P-1", "P-2"])]
     # Listar todas as propriedades únicas
+    
+     # Convertendo a coluna 'Period' para o tipo datetime, se necessário
+    df['Period'] = pd.to_datetime(df['Period'])
+
+    # Filtrar as últimas datas de cada propriedade
+    df_auxiliar = df.loc[df.groupby('Property')['Period'].idxmax()]
+
+    # Remover essas linhas do DataFrame original
+    df = df.drop(df_auxiliar.index)
+    
+    data =  df
     properties = data["Property"].unique()
 
     # Definir intervalos de hiperparâmetros para busca
@@ -31,7 +42,7 @@ def main():
     # # Treinar e selecionar o melhor modelo para cada propriedade
     for property_name in properties:
         print(property_name)
-    #     train_and_select_best_model(data, property_name, MODEL_PATH, lstm_units_list, epochs_list, batch_size_list)
+        #train_and_select_best_model(data, property_name, MODEL_PATH, lstm_units_list, epochs_list, batch_size_list)
     
     # Gerar gráficos para todas as propriedades
     # Carregar modelos e escaladores para as propriedades
@@ -47,6 +58,7 @@ def main():
         models['scalers'][property_name] = scalers
 
     # Gerar gráficos para todas as propriedades
+    data = load_data(DATA_PATH)
     plot_all_properties(data,models, PLOT_PATH)
 
 if __name__ == "__main__":

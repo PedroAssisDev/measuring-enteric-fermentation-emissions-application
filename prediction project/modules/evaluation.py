@@ -19,12 +19,3 @@ def predict_next_months(model, last_data, scaler_target, n_months):
         current_input = np.append(current_input[1:], next_pred_adjusted, axis=0)
     
     return predictions
-
-# Função para realizar a validação
-def validate_models(MODEL_PATH):
-    # Carregar os modelos e os dados
-    model_milk = load_model(os.path.join(MODEL_PATH, 'model_milk.keras'))
-    model_methane = load_model(os.path.join(MODEL_PATH, 'model_methane.keras'))
-    
-    scaler_features = np.load(os.path.join(MODEL_PATH, 'scaler_features.npy'), allow_pickle=True).item()
-    scaler_target

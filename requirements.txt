@@ -7,3 +7,5 @@ statsmodels
 scikit-learn
 tensorflow
 keras
+dash==2.6.2
+plotly==5.11.0
