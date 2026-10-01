@@ -1,0 +1,49 @@
+{
+  "scientific_params": {
+    "emission_factor_dairy_cattle": 87.0,
+    "emission_factor_other_cattle": 56.0,
+    "gwp_ch4": 28.0,
+    "days_in_period": 30
+  },
+  "rows": [
+    {
+      "Property": "P-1",
+      "Period": "2022-04-01",
+      "N_lact": 23.0,
+      "N_other": 34.0,
+      "ef_enteric_kgCH4": 117150.0,
+      "enteric_tCO2e": 3280.2
+    },
+    {
+      "Property": "P-1",
+      "Period": "2022-12-01",
+      "N_lact": 22.0,
+      "N_other": 28.0,
+      "ef_enteric_kgCH4": 104460.0,
+      "enteric_tCO2e": 2924.88
+    },
+    {
+      "Property": "P-12",
+      "Period": "2020-12-01",
+      "N_lact": 33.0,
+      "N_other": 29.0,
+      "ef_enteric_kgCH4": 134850.0,
+      "enteric_tCO2e": 3775.8
+    },
+    {
+      "Property": "P-12",
+      "Period": "2022-12-01",
+      "N_lact": 34.0,
+      "N_other": 32.0,
+      "ef_enteric_kgCH4": 142500.0,
+      "enteric_tCO2e": 3990.0
+    }
+  ],
+  "model_params": {
+    "P-1": {"milk": [50, 50, 16], "methane": [100, 100, 16]},
+    "P-2": {"milk": [50, 50, 32], "methane": [50, 50, 16]},
+    "P-3": {"milk": [50, 50, 16], "methane": [100, 100, 32]},
+    "P-12": {"milk": [50, 50, 32], "methane": [50, 100, 32]},
+    "P-22": {"milk": [50, 50, 16], "methane": [50, 50, 32]}
+  }
+}
