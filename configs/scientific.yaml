@@ -1,0 +1,50 @@
+# Scientific parameters used by the CarbonSECO livestock case study.
+# These values mirror the published implementation and must remain explicit
+# for reproducibility. Do not change without documenting scientific impact.
+
+tier1:
+  # IPCC Latin America factors from Table 1 of the associated paper
+  # (kg CH4 head^-1 y^-1 in the IPCC table; applied in code as EFProduction
+  # in EFEnteric = EFProduction * N * Days, preserving the original behaviour).
+  emission_factor_dairy_cattle: 87.0
+  emission_factor_other_cattle: 56.0
+  gwp_ch4: 28.0
+  days_in_period: 30
+
+other_cattle_columns:
+  - Dry_Cows
+  - Pregnant_Heifers
+  - Heifers_in_Raising
+  - Suckling_Calves_female
+  - Suckling_Calves_male
+  - Male_Calves_in_Raising
+  - Male_Calves_in_Fattening
+  - Draft_and_Breeding_Bulls
+  - Equines_and_Mules
+
+period_mapping:
+  # Period integer N maps to (anchor - N months)
+  anchor_date: "2023-01-01"
+
+lstm:
+  time_steps: 3
+  train_fraction: 0.8
+  validation_split: 0.1
+  feature_columns:
+    - Area_Used_for_Dairy_Activity
+    - Number_of_Lactating_Cows
+    - Number_of_Dry_Cows
+  target_milk: Milk_Production
+  target_methane: enteric_tCO2e
+  hyperparameter_grid:
+    lstm_units: [50, 100]
+    epochs: [50, 100]
+    batch_size: [16, 32]
+  forecast_horizon_months: 3
+
+properties_with_pretrained_models:
+  - P-1
+  - P-2
+  - P-3
+  - P-12
+  - P-22

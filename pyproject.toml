@@ -1,0 +1,56 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "enteric-emissions"
+version = "1.0.0"
+description = "CarbonSECO livestock services: Tier-1 enteric emission quantification, EntericMeasureOnto, LSTM forecasts, and decision-support dashboard."
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+authors = [
+  { name = "Pedro Henrique Assis Silva" },
+]
+dependencies = [
+  "pandas~=2.1.3",
+  "numpy>=1.24",
+  "pydantic>=2.0",
+  "PyYAML>=6.0",
+  "scikit-learn>=1.3",
+  "tensorflow>=2.13",
+  "keras>=2.13",
+  "matplotlib>=3.7",
+  "owlready2~=0.45",
+  "dash==2.6.2",
+  "dash-bootstrap-components>=1.4",
+  "plotly==5.11.0",
+]
+
+[project.optional-dependencies]
+dev = [
+  "pytest>=7.4",
+  "ruff>=0.4",
+]
+
+[project.scripts]
+enteric-standardize = "enteric_emissions.pipelines.cli:standardize_main"
+enteric-enrich = "enteric_emissions.pipelines.cli:enrich_main"
+enteric-train = "enteric_emissions.pipelines.cli:train_main"
+enteric-dashboard = "enteric_emissions.pipelines.cli:dashboard_main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py310"
+src = ["src", "tests", "scripts"]
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "W"]
+ignore = ["E501"]
