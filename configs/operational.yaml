@@ -1,0 +1,28 @@
+# Operational (non-scientific) configuration. Paths are relative to the
+# repository root unless overridden by environment variables.
+
+paths:
+  raw_data: data/raw/Property_data_orig.tsv
+  unused_raw_data: data/raw/Property_data_orissg.tsv
+  standardized_data: data/processed/property_data_standardized.csv
+  enriched_data: data/processed/property_data_enriched.csv
+  models_dir: models
+  results_plots: results/plots
+  results_metrics: results/metrics
+  ontology_dir: ontology/owl_files
+  ontology_tbox: ontology/owl_files/EntericMeasureOnto.owl
+  ontology_populated: ontology/owl_files/final_populated_EntericMeasureOnto.owl
+  ontology_reasoned: ontology/owl_files/synced_reasoner_EntericMeasureOnto.owl
+
+logging:
+  level: INFO
+
+reproducibility:
+  # Applied when training is explicitly requested. Pretrained artefacts are
+  # used by default and were produced without a documented seed.
+  random_seed: 42
+
+dashboard:
+  debug: true
+  host: 127.0.0.1
+  port: 8050

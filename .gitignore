@@ -3,6 +3,21 @@ __pycache__/
 *.py[cod]
 *$py.class
 
+# Local env / IDE
+.env
+.idea/
+.vscode/
+
+# Tooling caches
+.ruff_cache/
+.pytest_cache/
+.mypy_cache/
+
+# Generated local outputs (keep committed baselines under results/plots if desired)
+results/metrics/*.json
+!results/metrics/.gitkeep
+*.egg-info/
+
 # C extensions
 *.so
 
